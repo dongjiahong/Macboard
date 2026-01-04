@@ -9,4 +9,7 @@ extension Defaults.Keys {
     static let menubarIcon = Key<MenubarIcon>("menubarIcon", default: .normal)
     static let searchType = Key<SearchType>("searchType", default: .insensitive)
     static let clearPins = Key<Bool>("clearPins", default: false)
+    static let lanSyncEnabled = Key<Bool>("lanSyncEnabled", default: false)
+    static let lanSyncPort = Key<UInt16>("lanSyncPort", default: 8899)
+    static let autoCopyLatestOnWake = Key<Bool>("autoCopyLatestOnWake", default: false)
 }

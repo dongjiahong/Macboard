@@ -39,6 +39,10 @@
 		C5D534B12B604FE000074920 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D534B02B604FE000074920 /* ViewHelper.swift */; };
 		C5DBE0DB2B62493000418163 /* DetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DBE0DA2B62493000418163 /* DetailedView.swift */; };
 		C5E1CD8C2B8F1C8D0009EAE1 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = C5E1CD8B2B8F1C8D0009EAE1 /* KeyboardShortcuts */; };
+		BAAAAA012CF8000000000001 /* LocalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAAAA022CF8000000000001 /* LocalServer.swift */; };
+		BAAAAA032CF8000000000001 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAAAA042CF8000000000001 /* QRCodeGenerator.swift */; };
+		BAAAAA052CF8000000000001 /* MobilePageTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAAAA062CF8000000000001 /* MobilePageTemplate.swift */; };
+		BAAAAA072CF8000000000001 /* LANSyncSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAAAA082CF8000000000001 /* LANSyncSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,10 @@
 		C5D534AE2B604F8E00074920 /* Bool+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Comparable.swift"; sourceTree = "<group>"; };
 		C5D534B02B604FE000074920 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		C5DBE0DA2B62493000418163 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
+		BAAAAA022CF8000000000001 /* LocalServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServer.swift; sourceTree = "<group>"; };
+		BAAAAA042CF8000000000001 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		BAAAAA062CF8000000000001 /* MobilePageTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePageTemplate.swift; sourceTree = "<group>"; };
+		BAAAAA082CF8000000000001 /* LANSyncSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LANSyncSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,7 @@
 				C57800932B7C7BF900B40EEC /* AppDelegate.swift */,
 				C5091C802B5C4D8B0091896F /* Assets.xcassets */,
 				C5091C852B5C4D8B0091896F /* Macboard.entitlements */,
+				BAAAAA092CF8000000000001 /* Network */,
 			);
 			path = Macboard;
 			sourceTree = "<group>";
@@ -187,6 +196,7 @@
 				C5A1D2752B8F296B007943B2 /* GeneralSettingsView.swift */,
 				C534107B2B8F48BF007C55EA /* StorageSettingsView.swift */,
 				C534107D2B8F6340007C55EA /* KeyboardSettingsView.swift */,
+				BAAAAA082CF8000000000001 /* LANSyncSettingsView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -214,6 +224,16 @@
 				C5A5BC992B626EEC00104D06 /* Functions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BAAAAA092CF8000000000001 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BAAAAA022CF8000000000001 /* LocalServer.swift */,
+				BAAAAA042CF8000000000001 /* QRCodeGenerator.swift */,
+				BAAAAA062CF8000000000001 /* MobilePageTemplate.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +399,10 @@
 				C5A5BC982B626A8800104D06 /* Date+TimeAgo.swift in Sources */,
 				C5A1D2762B8F296B007943B2 /* GeneralSettingsView.swift in Sources */,
 				C5091C7D2B5C4D8A0091896F /* MacboardApp.swift in Sources */,
+				BAAAAA012CF8000000000001 /* LocalServer.swift in Sources */,
+				BAAAAA032CF8000000000001 /* QRCodeGenerator.swift in Sources */,
+				BAAAAA052CF8000000000001 /* MobilePageTemplate.swift in Sources */,
+				BAAAAA072CF8000000000001 /* LANSyncSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

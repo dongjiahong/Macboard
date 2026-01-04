@@ -51,6 +51,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStand
         
         return Settings.PaneHostingController(pane: paneView)
     }
+    let LANSyncSettingsViewController: () -> SettingsPane = {
+        let paneView = Settings.Pane(
+            identifier: .lanSync,
+            title: "LAN Sync",
+            toolbarIcon: NSImage(systemSymbolName: "wifi", accessibilityDescription: "LAN Sync Settings")!
+        ) {
+            LANSyncSettingsView()
+        }
+        
+        return Settings.PaneHostingController(pane: paneView)
+    }
     let AboutSettingsViewController: () -> SettingsPane = {
         let paneView = Settings.Pane(
             identifier: .about,
@@ -91,6 +102,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStand
             if !self.popover.isShown {
                 self.togglePopover()
             }
+        }
+        
+        // 根据设置启动局域网同步服务
+        if Defaults[.lanSyncEnabled] {
+            LocalSyncServer.shared.port = Defaults[.lanSyncPort]
+            LocalSyncServer.shared.start()
         }
     }
     
@@ -143,6 +160,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStand
         if let didCloseObserver = didCloseObserver {
             NotificationCenter.default.removeObserver(didCloseObserver)
         }
+        // 停止局域网同步服务
+        LocalSyncServer.shared.stop()
     }
     
     func popoverDidAppear() {
@@ -161,6 +180,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStand
             } else {
                 popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
                 NSApp.activate(ignoringOtherApps: true)
+                
+                // 如果开启了自动复制最新，则复制最新一条到系统剪贴板
+                if Defaults[.autoCopyLatestOnWake] {
+                    copyLatestItemToClipboard()
+                }
             }
         }
     }
@@ -171,12 +195,42 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStand
                 GeneralSettingsViewController(),
                 StorageSettingsViewController(),
                 KeyboardSettingsViewController(),
+                LANSyncSettingsViewController(),
                 AboutSettingsViewController()
             ],
             style: .toolbarItems,
             animated: true,
             hidesToolbarForSingleItem: true
         ).show()
+    }
+    
+    /// 复制最新的剪贴板项到系统剪贴板
+    private func copyLatestItemToClipboard() {
+        let context = PersistanceController.shared.container.viewContext
+        let fetchRequest = ClipboardItem.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \ClipboardItem.isPinned, ascending: false),
+            NSSortDescriptor(keyPath: \ClipboardItem.createdAt, ascending: false)
+        ]
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let items = try context.fetch(fetchRequest)
+            if let latestItem = items.first {
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                
+                if latestItem.contentType == "Text", let content = latestItem.content {
+                    pasteboard.setString(content, forType: .string)
+                } else if latestItem.contentType == "Image", let imageData = latestItem.imageData {
+                    if let image = NSImage(data: imageData) {
+                        pasteboard.writeObjects([image])
+                    }
+                }
+            }
+        } catch {
+            print("[AppDelegate] 获取最新剪贴板项失败: \(error)")
+        }
     }
     
 }

@@ -9,6 +9,7 @@ struct GeneralSettingsView: View {
     @Default(.showUrlMetadata) var showUrlMetadata
     @Default(.searchType) var searchType
     @Default(.menubarIcon) var menubarIcon
+    @Default(.autoCopyLatestOnWake) var autoCopyLatestOnWake
     
     var body: some View {
         Settings.Container(contentWidth: 300) {
@@ -20,6 +21,7 @@ struct GeneralSettingsView: View {
                         .padding(.vertical, 2)
                     Toggle("Show search bar", isOn: $showSearchbar)
                     Toggle("Show URL metadata", isOn: $showUrlMetadata)
+                    Toggle("唤醒时自动复制最新", isOn: $autoCopyLatestOnWake)
                     Picker(selection: $searchType, label: Text("Search")) {
                         Text("Case Sensitive")
                             .tag(SearchType.sensitive)
