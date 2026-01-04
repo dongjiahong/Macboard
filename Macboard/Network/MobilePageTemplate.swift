@@ -26,38 +26,39 @@ struct MobilePageTemplate {
                 display: flex;
                 flex-direction: column;
                 color: #fff;
-                padding: 20px;
-                padding-top: env(safe-area-inset-top, 20px);
-                padding-bottom: env(safe-area-inset-bottom, 20px);
+                padding: 16px;
+                padding-top: env(safe-area-inset-top, 16px);
+                padding-bottom: env(safe-area-inset-bottom, 16px);
             }
             
             .header {
-                text-align: center;
-                margin-bottom: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+            }
+            
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
             
             .header h1 {
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: 600;
                 background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                margin-bottom: 8px;
-            }
-            
-            .header p {
-                font-size: 14px;
-                color: rgba(255, 255, 255, 0.6);
             }
             
             .connection-status {
-                display: inline-flex;
+                display: flex;
                 align-items: center;
-                gap: 6px;
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-size: 12px;
-                margin-top: 12px;
+                gap: 4px;
+                padding: 4px 10px;
+                border-radius: 12px;
+                font-size: 11px;
             }
             
             .connection-status.connected {
@@ -76,8 +77,8 @@ struct MobilePageTemplate {
             }
             
             .status-dot {
-                width: 8px;
-                height: 8px;
+                width: 6px;
+                height: 6px;
                 border-radius: 50%;
                 background: currentColor;
             }
@@ -91,25 +92,24 @@ struct MobilePageTemplate {
                 50% { opacity: 0.4; }
             }
             
-            .input-container {
-                flex: 1;
+            .input-section {
                 display: flex;
                 flex-direction: column;
+                gap: 8px;
             }
             
             textarea {
-                flex: 1;
-                min-height: 130px;
-                max-height: 200px;
-                padding: 16px;
+                min-height: 120px;
+                max-height: 180px;
+                padding: 14px;
                 border: none;
-                border-radius: 16px;
+                border-radius: 12px;
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
                 color: #fff;
                 font-size: 16px;
-                line-height: 1.6;
+                line-height: 1.5;
                 resize: none;
                 outline: none;
                 transition: all 0.3s ease;
@@ -125,31 +125,29 @@ struct MobilePageTemplate {
             }
             
             .button-container {
-                margin-top: 16px;
                 display: flex;
-                gap: 12px;
+                gap: 8px;
             }
             
             button {
-                flex: 1;
-                padding: 16px 24px;
+                padding: 12px 16px;
                 border: none;
-                border-radius: 12px;
-                font-size: 16px;
+                border-radius: 10px;
+                font-size: 15px;
                 font-weight: 600;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                transition: all 0.2s ease;
             }
             
             .send-btn {
+                flex: 1;
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: #fff;
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
             }
             
             .send-btn:active {
                 transform: scale(0.98);
-                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
             }
             
             .send-btn:disabled {
@@ -160,7 +158,7 @@ struct MobilePageTemplate {
             .clear-btn {
                 background: rgba(255, 255, 255, 0.1);
                 color: rgba(255, 255, 255, 0.8);
-                flex: 0.4;
+                padding: 12px 20px;
             }
             
             .clear-btn:active {
@@ -168,79 +166,108 @@ struct MobilePageTemplate {
             }
             
             .status {
-                margin-top: 16px;
+                margin-top: 8px;
                 text-align: center;
-                font-size: 14px;
-                min-height: 20px;
+                font-size: 13px;
+                min-height: 18px;
             }
             
-            .status.success {
-                color: #4ade80;
-            }
-            
-            .status.error {
-                color: #f87171;
-            }
+            .status.success { color: #4ade80; }
+            .status.error { color: #f87171; }
             
             .history {
-                margin-top: 24px;
+                margin-top: 16px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+            
+            .history-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 8px;
             }
             
             .history-title {
-                font-size: 14px;
-                color: rgba(255, 255, 255, 0.6);
-                margin-bottom: 12px;
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .clear-history-btn {
+                padding: 4px 10px;
+                font-size: 11px;
+                background: rgba(248, 113, 113, 0.15);
+                color: #f87171;
+                border-radius: 6px;
+            }
+            
+            .clear-history-btn:active {
+                background: rgba(248, 113, 113, 0.25);
             }
             
             .history-list {
+                flex: 1;
                 display: flex;
                 flex-direction: column;
-                gap: 8px;
-                max-height: 150px;
+                gap: 6px;
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
             .history-item {
-                padding: 12px;
-                background: rgba(255, 255, 255, 0.08);
+                padding: 10px 12px;
+                background: rgba(255, 255, 255, 0.06);
                 border-radius: 8px;
-                font-size: 14px;
-                color: rgba(255, 255, 255, 0.8);
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.75);
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 cursor: pointer;
                 transition: background 0.2s ease;
+                flex-shrink: 0;
             }
             
             .history-item:active {
-                background: rgba(255, 255, 255, 0.15);
+                background: rgba(255, 255, 255, 0.12);
+            }
+            
+            .empty-history {
+                text-align: center;
+                padding: 20px;
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 13px;
             }
         </style>
     </head>
     <body>
         <div class="header">
-            <h1>📋 Macboard 同步</h1>
-            <p>输入文本后点击发送，即可同步到 Mac 剪贴板</p>
+            <div class="header-left">
+                <h1>📋 Macboard</h1>
+            </div>
             <div class="connection-status checking" id="connectionStatus">
                 <span class="status-dot pulse"></span>
-                <span id="connectionText">检测连接中...</span>
+                <span id="connectionText">检测中</span>
             </div>
         </div>
         
-        <div class="input-container">
-            <textarea id="content" placeholder="在此输入要同步的文本..."></textarea>
-        </div>
-        
-        <div class="button-container">
-            <button class="clear-btn" onclick="clearInput()">清空</button>
-            <button class="send-btn" id="sendBtn" onclick="sendContent()">发送到 Mac</button>
+        <div class="input-section">
+            <textarea id="content" placeholder="输入要同步的文本..."></textarea>
+            <div class="button-container">
+                <button class="clear-btn" onclick="clearInput()">清空</button>
+                <button class="send-btn" id="sendBtn" onclick="sendContent()">发送到 Mac</button>
+            </div>
         </div>
         
         <div class="status" id="status"></div>
         
-        <div class="history" id="historySection" style="display: none;">
-            <div class="history-title">最近发送</div>
+        <div class="history" id="historySection">
+            <div class="history-header">
+                <span class="history-title">最近发送</span>
+                <button class="clear-history-btn" onclick="clearHistory()">清除</button>
+            </div>
             <div class="history-list" id="historyList"></div>
         </div>
         
@@ -251,14 +278,11 @@ struct MobilePageTemplate {
             const historySection = document.getElementById('historySection');
             const historyList = document.getElementById('historyList');
             
-            // 从 localStorage 加载历史
             let history = JSON.parse(localStorage.getItem('macboard_history') || '[]');
             renderHistory();
             
-            // 检查连接状态
             const connectionStatus = document.getElementById('connectionStatus');
             const connectionText = document.getElementById('connectionText');
-            let isConnected = false;
             
             async function checkConnection() {
                 try {
@@ -266,18 +290,13 @@ struct MobilePageTemplate {
                         method: 'OPTIONS',
                         signal: AbortSignal.timeout(3000)
                     });
-                    if (response.ok || response.status === 204) {
-                        setConnected(true);
-                    } else {
-                        setConnected(false);
-                    }
+                    setConnected(response.ok || response.status === 204);
                 } catch (error) {
                     setConnected(false);
                 }
             }
             
             function setConnected(connected) {
-                isConnected = connected;
                 const dot = connectionStatus.querySelector('.status-dot');
                 if (connected) {
                     connectionStatus.className = 'connection-status connected';
@@ -290,7 +309,6 @@ struct MobilePageTemplate {
                 }
             }
             
-            // 初始检查并定期检查连接
             checkConnection();
             setInterval(checkConnection, 5000);
             
@@ -307,23 +325,21 @@ struct MobilePageTemplate {
                 try {
                     const response = await fetch('/sync', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ content })
                     });
                     
                     const result = await response.json();
                     
                     if (result.success) {
-                        showStatus('✓ 已同步到 Mac 剪贴板', 'success');
+                        showStatus('✓ 已同步', 'success');
                         addToHistory(content);
                         textarea.value = '';
                     } else {
-                        showStatus('发送失败: ' + (result.error || '未知错误'), 'error');
+                        showStatus('失败: ' + (result.error || '未知错误'), 'error');
                     }
                 } catch (error) {
-                    showStatus('连接失败，请确保与 Mac 在同一网络', 'error');
+                    showStatus('连接失败', 'error');
                 }
                 
                 sendBtn.disabled = false;
@@ -343,46 +359,48 @@ struct MobilePageTemplate {
                     setTimeout(() => {
                         status.textContent = '';
                         status.className = 'status';
-                    }, 3000);
+                    }, 2000);
                 }
             }
             
             function addToHistory(content) {
-                // 移除重复项
                 history = history.filter(item => item !== content);
-                // 添加到开头
                 history.unshift(content);
-                // 最多保留 10 条
                 history = history.slice(0, 10);
-                // 保存
                 localStorage.setItem('macboard_history', JSON.stringify(history));
                 renderHistory();
             }
             
+            function clearHistory() {
+                if (confirm('确定清除所有历史记录？')) {
+                    history = [];
+                    localStorage.removeItem('macboard_history');
+                    renderHistory();
+                }
+            }
+            
             function renderHistory() {
                 if (history.length === 0) {
-                    historySection.style.display = 'none';
+                    historyList.innerHTML = '<div class="empty-history">暂无记录</div>';
                     return;
                 }
                 
-                historySection.style.display = 'block';
                 historyList.innerHTML = history.map(item => 
-                    `<div class="history-item" onclick="fillFromHistory('${escapeHtml(item)}')">${escapeHtml(item)}</div>`
+                    `<div class="history-item" onclick="fillFromHistory(this)">${escapeHtml(item)}</div>`
                 ).join('');
             }
             
-            function fillFromHistory(content) {
-                textarea.value = content;
+            function fillFromHistory(el) {
+                textarea.value = el.textContent;
                 textarea.focus();
             }
             
             function escapeHtml(text) {
                 const div = document.createElement('div');
                 div.textContent = text;
-                return div.innerHTML.replace(/'/g, "\\\\'");
+                return div.innerHTML;
             }
             
-            // 支持 Ctrl+Enter / Cmd+Enter 发送
             textarea.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                     e.preventDefault();
